@@ -20,3 +20,7 @@ If `~/go/bin` is NOT in the PATH env var:
 ## Test
 
     curl -v --data-binary @/etc/passwd localhost:8080/save
+
+## Test XML to JSON
+
+    curl -v --data-binary @xml/example1.xml localhost:8080/x2j
