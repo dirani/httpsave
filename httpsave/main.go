@@ -32,7 +32,7 @@ func main() {
 
 func rootHandler(w http.ResponseWriter, r *http.Request) {
 	const notFound = "404 nothing here\n"
-	log.Printf("rootHandler: method=%s host=%s url=%s from=%s - response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, notFound)
+	log.Printf("rootHandler: method=%s host=%s path=%s from=%s - response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, notFound)
 	http.Error(w, notFound, 404)
 }
 
@@ -42,21 +42,21 @@ func saveHandler(w http.ResponseWriter, r *http.Request, saveFile string) {
 
 	body, errRead := ioutil.ReadAll(r.Body)
 	if errRead != nil {
-		log.Printf("saveHandler: method=%s host=%s url=%s from=%s - error:%s response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, errRead, internalError)
+		log.Printf("saveHandler: method=%s host=%s path=%s from=%s - error:%s response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, errRead, internalError)
 		http.Error(w, internalError, 500)
 		return
 	}
 
-	log.Printf("saveHandler: method=%s host=%s url=%s from=%s - saving %d bytes to file %s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, len(body), saveFile)
+	log.Printf("saveHandler: method=%s host=%s path=%s from=%s - saving %d bytes to file %s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, len(body), saveFile)
 
 	errWrite := ioutil.WriteFile(saveFile, body, 0640)
 	if errWrite != nil {
-		log.Printf("saveHandler: method=%s host=%s url=%s from=%s - error:%s response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, errWrite, internalError)
+		log.Printf("saveHandler: method=%s host=%s path=%s from=%s - error:%s response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, errWrite, internalError)
 		http.Error(w, internalError, 500)
 		return
 	}
 
 	const responseOk = "200 ok\n"
-	log.Printf("saveHandler: method=%s host=%s url=%s from=%s - response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, responseOk)
+	log.Printf("saveHandler: method=%s host=%s path=%s from=%s - response:%s", r.Method, r.Host, r.URL.Path, r.RemoteAddr, responseOk)
 	io.WriteString(w, responseOk)
 }
