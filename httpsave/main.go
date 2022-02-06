@@ -28,6 +28,8 @@ func main() {
 	log.Printf("installing save handler at /save")
 	http.HandleFunc("/save", func(w http.ResponseWriter, r *http.Request) { saveHandler(w, r, saveFile) })
 	http.HandleFunc("/save/", func(w http.ResponseWriter, r *http.Request) { saveHandler(w, r, saveFile) })
+
+	log.Printf("installing x2j handler at /x2j")
 	http.HandleFunc("/x2j", func(w http.ResponseWriter, r *http.Request) { x2jHandler(w, r, saveJson) })
 	http.HandleFunc("/x2j/", func(w http.ResponseWriter, r *http.Request) { x2jHandler(w, r, saveJson) })
 
