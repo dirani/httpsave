@@ -18,8 +18,8 @@ func main() {
 	var saveJson string
 
 	flag.StringVar(&listenAddr, "listenAddr", ":8080", "listen address [host]:port")
-	flag.StringVar(&saveFile, "saveFile", "/tmp/httpsave", "save file path")
-	flag.StringVar(&saveJson, "saveJson", "/tmp/httpsave.json", "save json file path")
+	flag.StringVar(&saveFile, "saveFile", "C:\\temp\\httpsave", "save file path")
+	flag.StringVar(&saveJson, "saveJson", "C:\\temp\\httpsave.json", "save json file path")
 	flag.Parse()
 
 	log.Printf("installing default catch all handler at /")
